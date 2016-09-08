@@ -1,1 +1,1 @@
-com.sproutigy.commons.serialization.api.JavaSerializerProvider
+com.sproutigy.commons.serialization.standard.JavaSerializerProvider

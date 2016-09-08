@@ -1,8 +1,8 @@
 package com.sproutigy.commons.serialization.api;
 
+import com.sproutigy.commons.serialization.standard.JavaSerializerProvider;
 import org.junit.Test;
 
-import java.io.InputStream;
 import java.util.LinkedHashMap;
 
 import static org.junit.Assert.*;

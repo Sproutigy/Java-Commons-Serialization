@@ -1,5 +1,6 @@
-package com.sproutigy.commons.serialization.api;
+package com.sproutigy.commons.serialization.standard;
 
+import com.sproutigy.commons.serialization.api.SerializationException;
 import com.sproutigy.commons.serialization.api.impl.AbstractSerializer;
 
 import java.io.*;
