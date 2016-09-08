@@ -79,32 +79,42 @@ Is a wrapper around serializer with predefined serialization class and parent se
 
 
 ## Usage
-`JavaSerializer` and `JavaSerializerProvider` are added by default with API (as they are already implemented by JVM).
-For other serialization types add specific implementation as a dependency (or include in classpath).
-All implementations available in classpath could be accessed by `Serialization.SPI()`.
 
-#### Examples
+Some serialization types are considered standard as they are already implemented by JVM and not require additional dependencies.
+For other serialization types specific implementation as a dependency need to be added (or just included in classpath).
+All implementations compatible with Java's Service Provider Interface (SPI) seen in classpath could be accessed by `Serialization.SPI()`.
 
-##### Automatic lookup for specific serializer by file extension
+### Standard serializers
+
+#### Java serialization
+`JavaSerializer` and `JavaSerializerProvider` serialize through Java's ObjectOutputStream and deserializes using ObjectInputStream.
+
+#### String serialization
+`StringSerializer` and `StringSerializerProvider` serializes object's toString() result (or just an input String) and creates byte array representation for it using optionally specified charset (UTF-8 by default). Deserializes **always** to a String.
+
+
+### Examples
+
+#### Automatic lookup for specific serializer by file extension
 ```java
 Serializer serializerJson = Serialization.SPI().forFileExtension("json").newSerializer();
 Serializer serializerJava = Serialization.SPI().forFileExtension("ser").newSerializer();
 ```
 
-##### Automatic lookup for specific serializer by MIME type
+#### Automatic lookup for specific serializer by MIME type
 ```java
 Serializer serializerJson = Serialization.SPI().forType("application/json").newSerializer();
 Serializer serializerJava = Serialization.SPI().forType("application/java-serialized-object").newSerializer();
 ```
 
-##### Manual creation of provider and serializer
+#### Manual creation of provider and serializer
 ```java
 SerializerProvider provider = new JavaSerializerProvider();
 Serializer serializer = provider.newSerializer();
 serializer = new JavaSerializer();
 ```
 
-##### Standard serialization and deserialization
+#### Standard serialization and deserialization
 ```java
 MyClass myObj = ...
 Serializer serializer = ...
@@ -112,7 +122,7 @@ byte[] data = serializer.serialize(myObj);
 MyClass myObjDeserialized = serializer.deserialize(MyClass.class, data);
 ```
 
-##### TypedSerializer
+#### TypedSerializer
 ```java
 Serializer serializer = ...
 TypedSerializer<MyClass> typedSerializer = new TypedSerializer<>(MyClass.class, serializer);
