@@ -1,6 +1,10 @@
-package com.sproutigy.commons.serialization.api;
+package com.sproutigy.commons.serialization.standard;
 
+import com.sproutigy.commons.serialization.api.Serialization;
+import com.sproutigy.commons.serialization.api.Serializer;
+import com.sproutigy.commons.serialization.api.SerializerProvider;
 import com.sproutigy.commons.serialization.standard.JavaSerializerProvider;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.LinkedHashMap;
@@ -11,7 +15,7 @@ public class JavaSerializerTest {
 
     @Test
     public void testSPIAvailability() {
-        assertEquals("Java", Serialization.SPI().forFileExtension("ser").getName());
+        Assert.assertEquals("Java", Serialization.SPI().forFileExtension("ser").getName());
         assertEquals("Java", Serialization.SPI().forType("application/java-serialized-object").getName());
     }
 
