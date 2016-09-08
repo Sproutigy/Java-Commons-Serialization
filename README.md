@@ -74,12 +74,12 @@ Is a wrapper around serializer with predefined serialization class and parent se
     T deserialize(byte[] serialized, int offset, int length) thorws SerializationException;
 ```
 
-#### SerializationException
+### SerializationException
 `SerializationException` is an unchecked (extends RuntimeException) exception that is thrown on serialization and deserialization errors other than IOException.
 
 
 ## Usage
-JavaSerializer and JavaSerializerProvider are added by default with API (as they are already implemented by JVM).
+`JavaSerializer` and `JavaSerializerProvider` are added by default with API (as they are already implemented by JVM).
 For other serialization types add specific implementation as a dependency (or include in classpath).
 All implementations available in classpath could be accessed by `Serialization.SPI()`.
 
@@ -88,7 +88,7 @@ All implementations available in classpath could be accessed by `Serialization.S
 ##### Automatic lookup for specific serializer by file extension
 ```java
 Serializer serializerJson = Serialization.SPI().forFileExtension("json").newSerializer();
-Serializer serializeJavar = Serialization.SPI().forFileExtension("ser").newSerializer();
+Serializer serializerJava = Serialization.SPI().forFileExtension("ser").newSerializer();
 ```
 
 ##### Automatic lookup for specific serializer by MIME type
@@ -128,14 +128,14 @@ TypedSerializer<MyClass> typedSerializer = new TypedSerializer<>(MyClass.class, 
 ```
 It has no dependencies.
 
-#### JSON/Jackson serialization
+#### JSON by Jackson serialization
 ```xml
 <groupId>com.sproutigy.commons</groupId>
 <artifactId>serialization-json-jackson</artifactId>
 <version>1.0-SNAPSHOT</version>
 ```
 
-Depends on following Jackson libraries version 2.8.2: `jackson-core`, `jackson-databind`, `jackson-annotations`.
+Depends on following [Jackson](https://github.com/FasterXML/jackson-core) libraries version 2.8.2: `jackson-core`, `jackson-databind`, `jackson-annotations`.
 
 ## More
 For more information and commercial support visit [Sproutigy](http://www.sproutigy.com/opensource)
