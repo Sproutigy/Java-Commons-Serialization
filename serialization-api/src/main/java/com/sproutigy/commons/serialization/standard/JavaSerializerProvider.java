@@ -7,8 +7,10 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class JavaSerializerProvider extends AbstractSerializerProvider {
+    public static final JavaSerializerProvider INSTANCE = new JavaSerializerProvider();
+
     public Serializer newSerializer() {
-        return new JavaSerializer();
+        return JavaSerializer.INSTACE;
     }
 
     @Override

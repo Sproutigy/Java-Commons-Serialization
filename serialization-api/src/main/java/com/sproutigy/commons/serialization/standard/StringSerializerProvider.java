@@ -29,6 +29,9 @@ public class StringSerializerProvider extends AbstractSerializerProvider {
 
     @Override
     public Serializer newSerializer() {
+        if (charset.equals(StringSerializer.DEFAULT_CHARSET)) {
+            return StringSerializer.INSTANCE_UTF_8;
+        }
         return new StringSerializer(charset);
     }
 

@@ -9,6 +9,8 @@ import java.nio.charset.StandardCharsets;
 public class StringSerializer extends AbstractSerializer {
     public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
+    public static final StringSerializer INSTANCE_UTF_8 = new StringSerializer(StandardCharsets.UTF_8);
+
     private Charset charset;
 
     public StringSerializer() {
@@ -16,18 +18,14 @@ public class StringSerializer extends AbstractSerializer {
     }
 
     public StringSerializer(Charset charset) {
-        setCharset(charset);
-    }
-
-    public Charset getCharset() {
-        return charset;
-    }
-
-    public void setCharset(Charset charset) {
         if (charset == null) {
             throw new NullPointerException("charset == null");
         }
         this.charset = charset;
+    }
+
+    public Charset getCharset() {
+        return charset;
     }
 
     @Override
