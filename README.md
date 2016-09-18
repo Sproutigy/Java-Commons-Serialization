@@ -50,13 +50,15 @@ Aggregates serializer providers:
 
 ```java
 public final class Serialization implements Iterable<SerializerProvider> {
+    Serialization(Iterable<SerializerProvider> providers); //constructor
+
     SerializerProvider forFileExtension(String fileExtension) throws SerializationException;
     SerializerProvider forType(String type) throws SerializationException;
     SerializerProvider byProviderName(String name) throws SerializationException;
     <T extends SerializerProvider> T byProviderClass(Class<T> providerClass) throws SerializationException;
 
-    public static Serialization SPI();
-    public static Serialization SPI(ClassLoader classLoader);
+    static Serialization SPI();
+    static Serialization SPI(ClassLoader classLoader);
 }
 ```
 
@@ -124,8 +126,10 @@ MyClass myObjDeserialized = serializer.deserialize(MyClass.class, data);
 
 #### TypedSerializer
 ```java
+byte[] data = ...
 Serializer serializer = ...
 TypedSerializer<MyClass> typedSerializer = new TypedSerializer<>(MyClass.class, serializer);
+MyClass myObj = typedSerializer.deserialize(data); //internally calls serializer.deserialize(MyClass.class, data);
 ```
 
 ### Modules
